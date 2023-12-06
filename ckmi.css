@@ -1,40 +1,55 @@
 body,h1, h2, h3, p {
     margin: 0;
     padding: 0;
-    position: relative;
-    z-index: 2;
 }
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #000000;
     font-size: large;
-    margin-top: 0;
 }
-.video-section {
-    overflow: hidden;
-    color: #fff;
-    padding: 320px;
-    text-align: center;
-    position: relative;
-    z-index: 2;
-}
-/*.logo {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 2;
-}*/
-.navigation {
+.header {
     display: flex;
     justify-content: space-between;
+    min-height: 100px;
     align-items: center;
-    z-index: 2;
+    background-color: #000000;
+    opacity: 0.5;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+.logo a img {
+    height: 40px;
+    margin-right: 10px;
+    z-index: 3;
+}
+.logo h2 {
+    color: #ffffff;
+}
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    z-index: 3;
+}
+.toggle-menu {
+    position: absolute;
+    width: 30px;
+    height: 100%;
+    z-index: 3;
+    cursor: pointer;
+    opacity: 0;
 }
 .menu {
     list-style-type: none;
     display:flex;
+    align-items:end;
     z-index: 1;
     transition: 0.5s;
+    background-color: #000000;
 }
 .menu li {
     margin-right: 20px;
@@ -42,24 +57,40 @@ body {
 .menu li a {
     color: #ffffff;
     text-decoration: none;
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 20px;
     font-size: 18px;
     line-height: 1;
     transition: 0.3s;
 }
 .menu li a:hover {
-    box-shadow: 0 -5px 0px #fff inset, 500px 0 0 rbga(255,255,255,0.03) inset;
+    box-shadow: 0 -5px 0px #fff inset, 500px 0 0 #6f6f6f inset;
     padding: 15px 20px 25px 20px;
 }
-.hamburger {
+.video-background {
+    overflow: hidden;
     position: relative;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20%);
+    z-index: -1;
+    object-fit: contain;
+}
+.hamburger {
+    display: flex;
+    position: absolute;
     width: 30px;
     height: 4px;
     background: #fff;
     border-radius: 10px;
     cursor: pointer;
-    z-index: 2;
+    z-index: 1;
     transition: 0.3s;
 }
 .hamburger:before,
@@ -80,96 +111,42 @@ body {
     top: 10px;
     width: 25px;
 }
-.toggle-menu {
-    position: absolute;
-    width: 30px;
-    height: 100%;
-    z-index: 3;
-    cursor: pointer;
-    opacity: 0;
-}
 .hamburger,
 .toggle-menu {
     display: none;
 }
-.navigation input:checked ~ .hamburger {
+.menu-header input:checked ~ .hamburger {
     background: transparent;
 }
-.navigation input:checked ~ .hamburger:before {
+.menu-header input:checked ~ .hamburger:before {
     top: 0;
     transform: rotate(-45deg);
     width: 30px;
 }
-.navigation input:checked ~ .hamburger:after {
+.menu-header input:checked ~ .hamburger:after {
     top: 0;
     transform: rotate(45deg);
     width: 30px;
 }
-.navigation input:checked ~ .menu {
+.menu-header input:checked ~ .menu {
     right: 0;
     box-shadow: -20px 0 40px rgba(0,0,0,0.3);
 }
-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.capa {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #1c1c1d;
-    opacity:0.5;
-    mix-blend-mode: overlay;
-}
-#about {
-    position: relative;
-    color: #000000;
-}
-
-section {
-    background-color: #fff;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-footer {
-    background-color: #6f6f6f;
-    color: #000000;
-    text-align: center;
-    padding: 10px;
-}
 
 @media only screen and (max-width: 600px) {
-    .video-section {
-        overflow: hidden;
-        background-color: #333;
-        color: #ffffff;
-        text-align: center;
-        position: relative;
-        z-index: 2;
-        justify-content: space-between;
-        padding: 20px 30px;
+    .header {
+        flex-direction:column;
     }
     .logo {
-        position: absolute;
-        top: 20px;
-        left: 20px;
+        position: relative;
         z-index: 2;
-    }
-    .navigation {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        z-index: 2;
+        text-decoration: none;
+        color: black;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
     }
     .menu {
         justify-content: start;
@@ -178,42 +155,23 @@ footer {
         position: fixed;
         top: 0;
         right: -300px;
-        background: #333;
-        opacity: 1;
+        background: #ffffff;
+        opacity: 0;
         width: 300px;
         height: 100%;
         padding-top: 65px;
     }
-    .menu li {
-        width: 100%;
-    }
-    .menu li a,
-    .menu li a:hover {
-        padding: 30px;
-        font-size: 24px;
-        box-shadow: 0 1px 0 rgba(255,255,255,0.1) inset;
-    }
     .hamburger,
     .toggle-menu {
     display: block;
+    
     }
-    video {
-        position: absolute;
-        padding: 100%;
-        top: 0;
-        left: 0;
+    .video-background {
+        overflow: hidden;
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    .capa {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #1c1c1d;
-        opacity:0.5;
-        mix-blend-mode: overlay;
+        padding: 0;
+        margin: 0 auto;
+        position: relative;
+        min-height: 100vh;
     }
 }
