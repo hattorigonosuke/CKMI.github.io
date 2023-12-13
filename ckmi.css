@@ -74,13 +74,10 @@ body {
     position: relative;
     min-width: 100%;
     min-height: 100%;
-    width: auto;
-    height: auto;
-    top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-20%);
     z-index: -1;
-    object-fit: contain;
+    object-fit: cover;
 }
 .hamburger {
     display: flex;
@@ -133,7 +130,7 @@ body {
     box-shadow: -20px 0 40px rgba(0,0,0,0.3);
 }
 
-@media only screen and (max-width: 600px) {
+@media all and (max-width: 600px) {
     .header {
         flex-direction:column;
     }
@@ -164,7 +161,6 @@ body {
     .hamburger,
     .toggle-menu {
     display: block;
-    
     }
     .video-background {
         overflow: hidden;
